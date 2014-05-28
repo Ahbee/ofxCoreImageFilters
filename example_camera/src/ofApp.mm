@@ -45,7 +45,6 @@ void ofApp::draw(){
     
     ofDisableDepthTest();
     gui.draw();
-    ofDrawBitmapString(ofToString(ofGetFrameRate()), 300, 700);
 }
 
 //--------------------------------------------------------------
