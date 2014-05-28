@@ -102,7 +102,7 @@ Example use of an ofxCIFilterChain.
 You only have to set 'inputImage' on the first filter. ofxCIFilterChain only takes a weak reference to the filters so make sure each filter you added is still around in memory when you call getOutput() on the chain.
 ___
 ### Credits
-Thanks @laserpilot whose original Core Image addon served as a foundation
+Thanks @laserpilot whose [original Core Image addon](https://github.com/laserpilot/ofxCoreImage) served as a foundation
 
 
 
