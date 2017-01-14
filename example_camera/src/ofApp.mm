@@ -18,7 +18,7 @@ void ofApp::setup(){
     // setup filters
     parallelogram.setup(OFX_FILTER_TYPE_PARALLELOGRAM_TILE);
     parallelogram.getAvailableSettings();
-    parallelogram.setInputCenter(ofVec2f(cam.width/2,cam.height/2));
+    parallelogram.setInputCenter(ofVec2f(cam.getWidth()/2,cam.getHeight()/2));
 }
 
 //--------------------------------------------------------------

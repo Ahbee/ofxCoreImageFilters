@@ -3,13 +3,13 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     // load images
-    cupcake.loadImage("cupcake.jpg");
-    whiteFlower.loadImage("whiteFlower.jpg");
-    tiger.loadImage("tiger.jpg");
-    checkerBoard.loadImage("checker.jpg");
-    smile.loadImage("smile.png");
-    checkerBoard.resize(tiger.width, tiger.height);
-    smile.resize(cupcake.width, cupcake.height);
+    cupcake.load("cupcake.jpg");
+    whiteFlower.load("whiteFlower.jpg");
+    tiger.load("tiger.jpg");
+    checkerBoard.load("checker.jpg");
+    smile.load("smile.png");
+    checkerBoard.resize(tiger.getWidth(), tiger.getHeight());
+    smile.resize(cupcake.getWidth(), cupcake.getHeight());
     
     // setup gui
     gui.setup();
@@ -24,10 +24,10 @@ void ofApp::setup(){
     sepiaSettings.add(sepiaIntensity.setup("Intensity",.9,0,1));
     gloomSettings.add(gloomRadius.setup("Radius",40,0,100));
     gloomSettings.add(gloomIntensity.setup("Intensity",1,0,1));
-    glassDistortionSettings.add(glassCenterX.setup("centerX",0,0,cupcake.width));
-    glassDistortionSettings.add(glassCenterY.setup("centerY",0,0,cupcake.height));
-    vortexSettings.add(vortexCenterX.setup("centerX",100,0,cupcake.width));
-    vortexSettings.add(vortexCenterY.setup("centerY",100,0,cupcake.height));
+    glassDistortionSettings.add(glassCenterX.setup("centerX",0,0,cupcake.getWidth()));
+    glassDistortionSettings.add(glassCenterY.setup("centerY",0,0,cupcake.getHeight()));
+    vortexSettings.add(vortexCenterX.setup("centerX",100,0,cupcake.getWidth()));
+    vortexSettings.add(vortexCenterY.setup("centerY",100,0,cupcake.getHeight()));
     vortexSettings.add(vortexRadius.setup("radius",400,0,800));
     vortexSettings.add(vortexAngle.setup("angle",70,-90,90));
     glassDistortionSettings.add(scale.setup("scale",200,1,500));
@@ -49,7 +49,7 @@ void ofApp::setup(){
     pageTurn.getAvailableSettings();
     pageTurn.setInputImage(tiger);
     pageTurn.setInputTargetImage(whiteFlower);
-    pageTurn.setInputExtent(ofRectangle(0, 0, tiger.width, tiger.height));
+    pageTurn.setInputExtent(ofRectangle(0, 0, tiger.getWidth(), tiger.getHeight()));
     pageTurn.set("inputBacksideImage",checkerBoard);
     
     gloom.setup(OFX_FILTER_TYPE_GLOOM);

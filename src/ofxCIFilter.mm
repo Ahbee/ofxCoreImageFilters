@@ -15,14 +15,13 @@ const BOOL OFX_USE_SOFTWARE_RENDERER = NO;
 
 void ofxCIFilter::disableAutoCacheClearing(){
     shouldAutoClear = false;
-    ofEvents().update-= Poco::priorityDelegate(&ofxCIFilter::update, OF_EVENT_ORDER_APP);
-
+    ofRemoveListener(ofEvents().update, &ofxCIFilter::update,OF_EVENT_ORDER_APP);
 }
 
 void ofxCIFilter::enableAutoCacheClearing(){
     shouldAutoClear = true;
-    ofEvents().update-= Poco::priorityDelegate(&ofxCIFilter::update, OF_EVENT_ORDER_APP);
-    ofEvents().update+= Poco::priorityDelegate(&ofxCIFilter::update, OF_EVENT_ORDER_APP);
+    ofRemoveListener(ofEvents().update, &ofxCIFilter::update,OF_EVENT_ORDER_APP);
+    ofAddListener(ofEvents().update,&ofxCIFilter::update,OF_EVENT_ORDER_APP);
 }
 
 void ofxCIFilter::update(ofEventArgs &args){
@@ -82,7 +81,7 @@ void ofxCIFilter::createContext(){
 //-------------------------------------------------------------
 
 void ofxCIFilter::convertToARGB(ofImage &image){
-    unsigned char *data = image.getPixels();
+    unsigned char *data = image.getPixels().getData();
     int size = image.getWidth() * image.getHeight() * 4;
     for (int i = 0; i < size; i+=4) {
         unsigned char r = data[i];
@@ -107,7 +106,7 @@ CIImage* ofxCIFilter::imageFrom(const ofImage &img){
     NSUInteger bbp = 4;
     NSUInteger bpr = srcImage.getWidth() * 4;
     CGSize size = CGSizeMake(srcImage.getWidth(), srcImage.getHeight());
-    NSData *bitmapData = [NSData dataWithBytes:srcImage.getPixels() length:length];
+    NSData *bitmapData = [NSData dataWithBytes:srcImage.getPixels().getData() length:length];
     CIImage *dst = [CIImage imageWithBitmapData:bitmapData bytesPerRow:bpr size:size format:kCIFormatARGB8 colorSpace:_colorSpace];
     return dst;
 }
@@ -149,8 +148,8 @@ ofxCIFilter::ofxCIFilter(){
     _filter = nil;
     numberOfFilters++;
     if (numberOfFilters == 1 && shouldAutoClear == true) {
-        ofEvents().update-= Poco::priorityDelegate(&ofxCIFilter::update, OF_EVENT_ORDER_APP);
-        ofEvents().update+= Poco::priorityDelegate(&ofxCIFilter::update, OF_EVENT_ORDER_APP);
+        ofRemoveListener(ofEvents().update, &ofxCIFilter::update,OF_EVENT_ORDER_APP);
+        ofAddListener(ofEvents().update,&ofxCIFilter::update,OF_EVENT_ORDER_APP);
     }
 }
 
@@ -158,7 +157,7 @@ ofxCIFilter::~ofxCIFilter(){
     [_filter release];
     numberOfFilters--;
     if (numberOfFilters == 0 && shouldAutoClear == true) {
-        ofEvents().update-= Poco::priorityDelegate(&ofxCIFilter::update, OF_EVENT_ORDER_APP);
+        ofRemoveListener(ofEvents().update, &ofxCIFilter::update,OF_EVENT_ORDER_APP);
     }
 }
 
@@ -328,8 +327,8 @@ void ofxCIFilter::setInputImage(const ofImage &image){
     @catch (NSException *exception) {
         printParameterError("Image");
     }
-    inputWidth = image.width;
-    inputHeight = image.height;
+    inputWidth = image.getWidth();
+    inputHeight = image.getHeight();
 }
 
 void ofxCIFilter::setInputBackgroundImage(const ofImage &backgroundImage){
