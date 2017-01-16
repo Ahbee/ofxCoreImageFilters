@@ -6,9 +6,6 @@ ofxCoreImage Filters allows you to apply Core Image filters on ofImages. See the
 * Supports all 173 filters
 * Works with openGl 3.2+ and the programmable renderer.
 
-####Performance Note
-Compiling for 64 bit gives almost double the frame rate,so consider it if you need the extra performance.You can get a 64 bit version of OpenFrameworks here <https://github.com/NickHardeman/openframeworks_osx_64>
-
 ***
 
 ##How to use 
