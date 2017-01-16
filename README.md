@@ -13,15 +13,11 @@ Compiling for 64 bit gives almost double the frame rate,so consider it if you ne
 
 ##How to use 
 
-####Step 1 Link Quartz Core
-
-Go to Build Phases/Link binary with libraries,press the + sign and select QuartzCore.framework.
-
-####Step 2 Change source files to objective c++
+####Step 1 Change source files to objective c++
 
 Every source file in which you include "ofxCI.h", must be marked as objective c++. To do this select the file, open the file inspector (option+command + 1) and select objective c++ as the type. Some people might say to change the extension from .cpp to .mm, but this does not always work. 
 
-#### step 3 Setup and configure a filter
+#### step 2 Setup and configure a filter
 calling setup creates the filter and sets it up with default parameters. To see list of filter types look at the file ofxCIConstants.h. For full documentation refer to the [Core Image Filter Reference](https://developer.apple.com/library/mac/documentation/graphicsimaging/reference/CoreImageFilterReference/Reference/reference.html)
 
 ```
@@ -60,7 +56,7 @@ Common parameters like "inputImage" and "inputCenter" have built in functions to
 ofxCIFilter::set(string parameterName, T value)
 ```
 
-#### step 4 Get the output of a filter
+#### step 3 Get the output of a filter
 
 call `getOutput(const ofImage &outImage)` to get the output image. This function deletes whatever was previously in the outImage and creates a new image.
 
