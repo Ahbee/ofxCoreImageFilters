@@ -15,7 +15,7 @@ Compiling for 64 bit gives almost double the frame rate,so consider it if you ne
 
 ####Step 1 Change source files to objective c++
 
-Every source file in which you include "ofxCI.h", must be marked as objective c++. To do this select the file, open the file inspector (option+command + 1) and select objective c++ as the type. Some people might say to change the extension from .cpp to .mm, but this does not always work. 
+Every source file in which you include "ofxCI.h", must be marked as objective c++. To do this select the file, open the file inspector (option+command + 1) and select objective c++ as the type. Some people might say to change the extension from .cpp to .mm, but this does not always work(better to do both). 
 
 #### step 2 Setup and configure a filter
 calling setup creates the filter and sets it up with default parameters. To see list of filter types look at the file ofxCIConstants.h. For full documentation refer to the [Core Image Filter Reference](https://developer.apple.com/library/mac/documentation/graphicsimaging/reference/CoreImageFilterReference/Reference/reference.html)
