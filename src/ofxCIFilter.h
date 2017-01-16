@@ -2,6 +2,7 @@
 #include "ofMain.h"
 #include "ofxCIConstants.h"
 #import <QuartzCore/QuartzCore.h>
+#import <Cocoa/Cocoa.h>
 
 class ofxCIFilter {
 public:
